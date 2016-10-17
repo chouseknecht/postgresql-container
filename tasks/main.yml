@@ -1,2 +1,65 @@
 ---
-# tasks file for postgresql-container
+- name: Install epel
+  yum:
+    name: epel-release
+
+- name: Install yum packages
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - postgresql-server
+    - postgresql-contrib 
+    - ansible
+
+- name: Create postgres user
+  user:
+    name: postgres
+    uid: 1000
+    group: root
+    createhome: no
+    shell: 
+   
+- name: Create the data directory, if it does not exist
+  file:
+    path: "{{ pgdata }}" 
+    state: directory 
+    mode: 0775
+    owner: postgres
+    group: root
+    recurse: yes
+
+- name: Copy entrypoint.sh
+  copy:
+    src: "{{ roles_path }}/files/entrypoint.sh"
+    dest: /usr/bin/entrypoint.sh
+    owner: postgres
+    group: root
+    mode: 0775         
+
+- name: Create ansible-dbinit
+  file:
+    path: /ansible-dbinit
+    state: directory
+    mode: 0775
+    owner: postgres
+    group: root
+  
+- name: Copy files to ansible-dbinit
+  copy:
+    src: "{{ roles_path }}/files/{{ item }}" 
+    dest: "/ansible-dbinit/{{ item }}"
+    mode: 0664
+    owner: postgres
+    group: root
+  with_items:
+    - dbinit.yml
+    - createdb.j2.sql
+
+- name: Create /var/run/postgresql
+  file:
+    path: /var/run/postgresql
+    state: directory
+    owner: postgres
+    mode: 0777
+    group: root
+    recurse: yes
