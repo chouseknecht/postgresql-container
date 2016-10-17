@@ -1,2 +1,2 @@
 ---
-pgdata: /var/lib/postgresql
+pgdata: /var/lib/pgsql/data
