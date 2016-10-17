@@ -24,8 +24,8 @@ script:
   - ansible-container build
   - ansible-container run -d
   - ansible-container exec -i -t ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
-SELECT CURRENT_TIME;
-EOSQL
+        SELECT CURRENT_TIME;
+        EOSQL
 
 notifications:
   email: false
