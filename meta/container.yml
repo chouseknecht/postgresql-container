@@ -1,0 +1,13 @@
+
+postgres:
+  image: centos:7
+  environment:
+    - POSTGRES_DB=mydb
+    - POSTGRES_USER=admin
+    - POSTGRES_PASS=admin
+    - PGDATA=/var/lib/postgresql
+  user: postgres
+  command: ['postgres']
+  entrypoint: ['/usr/bin/entrypoint.sh']
+  ports:
+    - 5432:5432
