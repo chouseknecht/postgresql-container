@@ -38,12 +38,12 @@
       command: "pg_ctl -D {{ pgdata }} -o \"-c listen_addresses=\'localhost\'\" -w start"
     
     - name: Create the database 
-      command: psql --username postgres -a -f ./createdb.sql
+      command: psql -v ON_ERROR_STOP=1 --username postgres -a -f ./createdb.sql
 
-#    - name: Remove sql
-#      file:
-#        path: ./createdb.sql
-#        state: absent
+    - name: Remove sql
+      file:
+        path: ./createdb.sql
+        state: absent
 
     - name: Stop pg_ctl
       command: "pg_ctl -D {{ pgdata }} -m fast -w stop"
