@@ -30,7 +30,7 @@
 
 - name: Copy entrypoint.sh
   copy:
-    src: "{{ roles_path }}/files/entrypoint.sh"
+    src: "{{ role_path }}/files/entrypoint.sh"
     dest: /usr/bin/entrypoint.sh
     owner: postgres
     group: root
@@ -46,7 +46,7 @@
   
 - name: Copy files to ansible-dbinit
   copy:
-    src: "{{ roles_path }}/files/{{ item }}" 
+    src: "{{ role_path }}/files/{{ item }}" 
     dest: "/ansible-dbinit/{{ item }}"
     mode: 0664
     owner: postgres
