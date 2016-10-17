@@ -40,10 +40,10 @@
     - name: Create the database 
       command: psql --username postgres -a -f ./createdb.sql
 
-    - name: Remove sql
-      file:
-        path: ./createdb.sql
-        state: absent
+#    - name: Remove sql
+#      file:
+#        path: ./createdb.sql
+#        state: absent
 
     - name: Stop pg_ctl
       command: "pg_ctl -D {{ pgdata }} -m fast -w stop"
