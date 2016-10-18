@@ -29,8 +29,8 @@ script:
   - mv ansible/tmp.yml ansible/container.yml
   - cat ansible/container.yml
   - ansible-container build
-  - docker ps
   - ansible-container run -d
+  - docker ps
   # And finally, run tests...
   - ansible-playbook test.yml
 
