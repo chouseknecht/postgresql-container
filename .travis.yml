@@ -12,7 +12,7 @@ before_install:
   - sudo apt-get install -y -o Dpkg::Options::="--force-confold" --force-yes docker-engine
 
 install:
-  - pip install ansible ansible-container
+  - pip install git+https://github.com/ansible/ansible-container.git 
 
 script:
   - docker version
