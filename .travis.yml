@@ -29,10 +29,7 @@ script:
   - cat ansible/container.yml
   - ansible-container build
   - ansible-container run -d
-  # Our default database should exist, and we should be able to log into it.
-  - ansible-container exec -i -t ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
-         SELECT CURRENT_TIME;
-        EOSQL
+  - ansible-playbook test.yml
 
 notifications:
   email: false

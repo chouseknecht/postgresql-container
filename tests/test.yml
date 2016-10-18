@@ -1,0 +1,18 @@
+- name: Test the postgres service
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  tasks: 
+    - name: Log into the DB and run a simple SQL statement
+      shell: |
+        docker exec -i ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
+        SELECT CURRENT_TIME;
+        EOSQL
+      register: output
+
+    - debug: var=output
+
+    - name: Should return expected output
+      assert:
+        that:
+          - "'timetz' in output.stdout"
