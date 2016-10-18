@@ -13,6 +13,7 @@ before_install:
 
 install:
   - pip install git+https://github.com/ansible/ansible-container.git 
+  - pip install ansible
 
 script:
   - docker version
