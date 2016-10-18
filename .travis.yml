@@ -23,6 +23,8 @@ script:
   - ansible-container init
   - echo "Installing and testing git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}"
   - ansible-container install git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}
+  # Travis complains about a port conflict
+  - sed 's/5432:5432/6000:5432/' container.yml >container.yml
   - ansible-container build
   - ansible-container run -d
   - ansible-container exec -i -t ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
