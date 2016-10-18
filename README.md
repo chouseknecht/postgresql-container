@@ -23,7 +23,7 @@ $ ansible-container install chouseknecht.postgresql-container
 ## Role Variables
 
 pgdata
-> PostgreSQL data directory where your database will be created. Defaults to */var/lib/postgresql*.
+> PostgreSQL data directory where your database will be created. Defaults to */var/lib/pgsql/data*.
 
 ## Dependencies
 
