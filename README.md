@@ -1,6 +1,8 @@
 # postgresql-container
 
-A PostgreSQL container enabled role. Add a *postgres* service to your Ansible Container project:
+[![Build Status](https://travis-ci.org/chouseknecht/postgresql-container.svg?branch=master)](https://travis-ci.org/chouseknecht/postgresql-container)
+
+A PostgreSQL container enabled role. Adds a *postgres* service to your Ansible Container project:
 
 ```
 $ ansible-container install chouseknecht.postgresql-container 
