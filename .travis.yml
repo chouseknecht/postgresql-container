@@ -18,14 +18,14 @@ script:
   - docker version
   - docker-compose version
   - docker info
-  - cd tests 
-  - ansible-container init
-  - ansible-container install git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}
-  - ansible-container build
-  - ansible-container run -d
-  - ansible-container exec -i -t ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
-        SELECT CURRENT_TIME;
-        EOSQL
+  - ls -l 
+  # - ansible-container init
+  # - ansible-container install git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}
+  # - ansible-container build
+  # - ansible-container run -d
+  # - ansible-container exec -i -t ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
+  #       SELECT CURRENT_TIME;
+  #      EOSQL
 
 notifications:
   email: false
