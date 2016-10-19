@@ -3,6 +3,9 @@
   gather_facts: no
   connection: local
   tasks: 
+    - name: Wait for the DB to come up
+      wait_for: port=6000 delay=5 timeout=20
+
     - name: Log into the DB and run a simple SQL statement
       shell: |
         docker exec -i ansible_postgres_1 psql -U admin -d mydb <<-EOSQL
