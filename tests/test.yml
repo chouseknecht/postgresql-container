@@ -4,7 +4,7 @@
   connection: local
   tasks: 
     - name: Wait for the DB to come up
-      wait_for: port=6000 delay=5 timeout=20
+      wait_for: port=6000 delay=30 timeout=60
 
     - name: Log into the DB and run a simple SQL statement
       shell: |
