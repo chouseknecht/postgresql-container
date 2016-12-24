@@ -18,15 +18,23 @@
     group: root
     createhome: no
     shell: 
-   
+
 - name: Create the data directory, if it does not exist
   file:
-    path: "{{ pgdata }}" 
+    path: "/var/lib/pgsql/data" 
     state: directory 
     mode: 0775
     owner: postgres
     group: root
     recurse: yes
+
+- name: Set directory permissions
+  command: "chmod 775 {{ item }"
+  with_items:
+    - /var
+    - /var/lib 
+    - /var/lib/pgsql  
+    - /var/lib/pgsql/data
 
 - name: Copy entrypoint.sh
   copy:

@@ -1,0 +1,53 @@
+Starting Docker Compose engine to build your images...
+Cleaning up Ansible Container builder...
+No image found for tag tests-postgres:latest, so building from scratch
+Attaching to ansible_ansible-container_1
+Attaching to ansible_ansible-container_1, ansible_postgres_1
+[36mansible-container_1  |[0m Running pip install of ansible/requirements.txt
+[36mansible-container_1  |[0m - extracting postgresql-container to /etc/ansible/roles/postgresql-container
+[36mansible-container_1  |[0m - postgresql-container was installed successfully
+[36mansible-container_1  |[0m Host postgres running
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m PLAY [all] *********************************************************************
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m PLAY [postgres] ****************************************************************
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [Gathering Facts] *********************************************************
+[36mansible-container_1  |[0m ok: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Install epel] *************************************
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Install yum packages] *****************************
+[36mansible-container_1  |[0m changed: [postgres] => (item=[u'postgresql-server', u'postgresql-contrib', u'ansible'])
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Create postgres user] *****************************
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Create the data directory, if it does not exist] ***
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Copy entrypoint.sh] *******************************
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Create ansible-dbinit] ****************************
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Copy files to ansible-dbinit] *********************
+[36mansible-container_1  |[0m changed: [postgres] => (item=dbinit.yml)
+[36mansible-container_1  |[0m changed: [postgres] => (item=createdb.j2.sql)
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m TASK [postgresql-container : Create /var/run/postgresql] ***********************
+[36mansible-container_1  |[0m changed: [postgres]
+[36mansible-container_1  |[0m 
+[36mansible-container_1  |[0m PLAY RECAP *********************************************************************
+[36mansible-container_1  |[0m postgres                   : ok=9    changed=8    unreachable=0    failed=0   
+[36mansible-container_1  |[0m 
+[36mansible_ansible-container_1 exited with code 0
+[0mStopping ansible_postgres_1 ... 
+[1A[2KStopping ansible_postgres_1 ... done[1BExporting built containers as images...
+Committing image...
+Exported tests-postgres with image ID sha256:c25c00b9c803d10f294798fd0e0122541e325b74447694c92273fc64e48453fa
+Cleaning up postgres build container...
+Cleaning up Ansible Container builder...
+Aborting on container exit...

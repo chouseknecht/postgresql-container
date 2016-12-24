@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     postgres_initdb_args: "{{ lookup('env', 'POSTGRES_INITDB_ARGS') }}"
-    pgdata: "{{ lookup('env', 'PGDATA') }}" 
+    pgdata: /var/lib/pgsql/data
     postgres_db: "{{ lookup('env', 'POSTGRES_DB') }}"
     postgres_user: "{{ lookup('env', 'POSTGRES_USER') }}"
     postgres_pass: "{{ lookup('env', 'POSTGRES_PASS') }}"

@@ -5,7 +5,7 @@ postgres:
     - POSTGRES_DB=mydb
     - POSTGRES_USER=admin
     - POSTGRES_PASS=admin
-    - PGDATA=/var/lib/pgsql/data
+    - HOME=/var/lib/pgsql
   user: postgres
   command: ['postgres']
   entrypoint: ['/usr/bin/entrypoint.sh']
