@@ -1,1 +1,3 @@
 tests/ansible/
+*.out
+*.retry

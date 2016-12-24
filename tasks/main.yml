@@ -29,12 +29,7 @@
     recurse: yes
 
 - name: Set directory permissions
-  command: "chmod 775 {{ item }"
-  with_items:
-    - /var
-    - /var/lib 
-    - /var/lib/pgsql  
-    - /var/lib/pgsql/data
+  command: chmod 775 /var/lib/pgsql 
 
 - name: Copy entrypoint.sh
   copy:
