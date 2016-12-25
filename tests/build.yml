@@ -28,7 +28,7 @@
     lineinfile:
       dest: ./ansible/container.yml 
       regexp: 'expose:'
-      line: 'ports:' 
+      line: '    ports:' 
       
   - name: Change 5432
     lineinfile:

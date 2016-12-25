@@ -20,8 +20,10 @@
     createhome: no
     shell: 
 
-- name: Set directory permissions
-  command: chmod 775 /var/lib/pgsql 
+- name: Remove data directory
+  file:
+    path: /var/lib/pgsql
+    state: absent
 
 - name: Create data directory 
   file:
@@ -30,11 +32,7 @@
     owner: postgres
     group: root
     mode: 0775
-
-- name: Remove userdata directory
-  file:
-    path: /var/lib/pgsql/data/userdata
-    state: absent
+    recurse: yes
 
 - name: Copy entrypoint.sh
   copy:
