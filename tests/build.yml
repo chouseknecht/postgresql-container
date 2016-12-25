@@ -19,6 +19,6 @@
     shell: "ansible-container install git+https://github.com/chouseknecht/postgresql-container.git,$(git rev-parse HEAD)"
       
   - name: Build the project
-    shell: ansible-container build 2>&1 | tee -a build.out
+    shell: ansible-container build --from-scratch 2>&1 | tee -a build.out
     ignore_errors: yes
 
