@@ -9,10 +9,7 @@ postgres:
   user: postgres
   command: ['postgres']
   entrypoint: ['/usr/bin/entrypoint.sh']
-  ports:
-    - 5432:5432 
-  # Uncomment the following to use an external volume or host mount
-  # to store your database. Otherwise, the database will exist only
-  # only while the container exists.
-  # volumes:
-  # - <external data volume>:/var/lib/pgsql/data
+  expose:
+    - 5432 
+  volumes:
+    - /var/lib/pgsql/data

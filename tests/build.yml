@@ -15,8 +15,26 @@
   - name: Init the ansible directory 
     command: ansible-container init
     
+  - name: Remove comments 
+    lineinfile:
+      dest: ./ansible/container.yml
+      regexp: '^  #'
+      state: absent
+
   - name: Install this role with latest commit   
     shell: "ansible-container install git+https://github.com/chouseknecht/postgresql-container.git,$(git rev-parse HEAD)"
+
+  - name: Change expose
+    lineinfile:
+      dest: ./ansible/container.yml 
+      regexp: 'expose:'
+      line: 'ports:' 
+      
+  - name: Change 5432
+    lineinfile:
+      dest: ./ansible/container.yml 
+      regexp: '- 5432'
+      line: '    - 5432:5432' 
       
   - name: Build the project
     shell: ansible-container build --from-scratch 2>&1 | tee -a build.out
