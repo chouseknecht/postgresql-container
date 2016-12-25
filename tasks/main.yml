@@ -10,6 +10,7 @@
     - postgresql-server
     - postgresql-contrib 
     - ansible
+    - nss_wrapper
 
 - name: Create postgres user
   user:
