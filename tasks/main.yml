@@ -27,7 +27,7 @@
   file:
     path: /var/lib/pgsql/data
     state: directory
-    owner: postgresql
+    owner: postgres
     group: root
     mode: 0775
 
