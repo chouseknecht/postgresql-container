@@ -14,6 +14,7 @@ function generate_passwd_file() {
 export HOME=/var/lib/pgsql
 
 generate_passwd_file
+whoami
 
 if [ ! -f ${PGDATA}/pg_hba.conf ]; then
     # init the database

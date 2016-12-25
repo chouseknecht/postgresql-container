@@ -23,6 +23,11 @@
 - name: Set directory permissions
   command: chmod 775 /var/lib/pgsql 
 
+- name: Remove data directory
+  file:
+    path: /var/lib/pgsql/data
+    state: absent
+
 - name: Copy entrypoint.sh
   copy:
     src: "{{ role_path }}/files/entrypoint.sh"
@@ -49,6 +54,7 @@
   with_items:
     - dbinit.yml
     - createdb.j2.sql
+    - inventory
 
 - name: Create /var/run/postgresql
   file:
