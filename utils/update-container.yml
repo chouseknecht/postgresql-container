@@ -6,12 +6,12 @@
 
   - name: Change expose
     lineinfile:
-      dest: ../ansible/container.yml
+      dest: ../tests/ansible/container.yml
       regexp: 'expose:'
       line: '    ports:'
 
   - name: Change 5432
     lineinfile:
-      dest: ../ansible/container.yml
+      dest: ../tests/ansible/container.yml
       regexp: '- 5432'
       line: '    - 6000:5432'

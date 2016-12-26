@@ -6,7 +6,7 @@
 
   - name: Remove comments
     lineinfile:
-      dest: ../ansible/container.yml
+      dest: ../tests/ansible/container.yml
       regexp: '^  #'
       state: absent
 
