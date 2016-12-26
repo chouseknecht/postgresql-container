@@ -37,6 +37,6 @@
       line: '    - 5432:5432' 
       
   - name: Build the project
-    shell: ansible-container build --from-scratch 2>&1 | tee -a build.out
+    shell: ansible-container --debug build --from-scratch 2>&1 | tee -a build.out
     ignore_errors: yes
 
