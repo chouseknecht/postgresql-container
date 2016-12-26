@@ -22,11 +22,13 @@ script:
   - mkdir -p tests
   - cd tests
   - ansible-container init
+  - echo "Remove comments from container.yml"
+  - ansible-playbook ./utils/remove-comments.yml
   - echo "Installing and testing git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}"
   - ansible-container install git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}
-  # Travis complains about a port conflict, so override the host port
-  - sed 's/5432:5432/6000:5432/' ansible/container.yml >ansible/tmp.yml
-  - mv ansible/tmp.yml ansible/container.yml
+  - echo "Update ansible/container.yml"
+  - ansible-playbook ./utils/update-container.yml 
+  - echo "ansible/container.yml:"
   - cat ansible/container.yml
   - ansible-container build
   - ansible-container run -d
