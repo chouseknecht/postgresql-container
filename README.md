@@ -8,7 +8,7 @@ A PostgreSQL container enabled role.
 
 - Provides the build for the ansible/ansible-postgres image used in [django-gulp-nginx](https://github.com/ansible/django-gulp-nginx), an Ansible Container demo project.
 
-- Creates an image that is known to work with [minishift](https://github.com/minishift/minishift)
+- Creates an image that is known to work with [minishift](https://github.com/minishift/minishift) and a persistent volume claim (PVC) to store the database.
 
 To add a *postgres* service to your Ansible Container project:
 
@@ -17,7 +17,7 @@ $ ansible-container install chouseknecht.postgresql-container
 ```
 ### Database creation
 
-When the service is started, if no database is found in /var/lib/pgsql/data/userdata, then a new database is created. See *Role Variables* below for setting the database name and the username and password of the superuser. 
+When the service is started, if no database is found in */var/lib/pgsql/data/userdata*, a new database is created. See *Role Variables* below for setting the database name, and the username and password of the superuser. 
 
 ### Ports
 
@@ -25,11 +25,11 @@ Port 5432 is exposed, and can be accessed by other services. If you need to acce
 
 ### Volumes
 
-The database gets created at */var/lib/pgsql/data/userdata*. If you want the database created on external storage, map a host path or named volume to */var/lib/pgsql/data*. When the database is initialized, the *userdata* directory will be created with an owner of *postgres* and mode *0700*. This is required and enforced by the postgres *dbinit* command.
+The database gets created at */var/lib/pgsql/data/userdata*. If you want the database created on external storage, map a host path or named volume to */var/lib/pgsql/data*. When the database is initialized, the *userdata* directory will be created with an owner of *postgres* and mode *0700*. This is required and enforced by the *dbinit* command.
 
-The image needs to be built without any volumes attached to */var/lib/pgsql/data*, allowing the path to be created in the image with the ownership set to *postgres:root*. Then later a Docker volume can be mounted to the path during `run`, and the permissions on the mount point will be correct, allowing *userdata* to be created. Otherwise, the mount ends up being owned by *root*, and the database init fails with a permssions error. For this reason, it's best to add the *volume* directive to *dev_overrides*.
+The image needs to be built without any volumes attached to */var/lib/pgsql/data*, allowing the path to be created in the image with the ownership set to *postgres:root*. Then later, during `ansible-container run`, a Docker volume can be mounted to the path, and the permissions on the mount point will be correct, allowing *userdata* to be created. Otherwise, the mount ends up being owned by *root*, and the database init fails with a permssions error. For this reason, it's best to add the *volume* directive to *dev_overrides*.
 
-If you're planning to deploy to OpenShift, then we recommend using the pre-built ansible/ansible-postgres image, which contains the data path already built with the ownership and permissions.
+If you're planning to deploy to OpenShift, then we recommend using the pre-built ansible/ansible-postgres image, which already contains the data path with the correct ownership and permissions.
 
 ## Requirements
 

@@ -23,11 +23,11 @@ script:
   - cd tests
   - ansible-container init
   - echo "Remove comments from container.yml"
-  - ansible-playbook ../utils/remove-comments.yml
+  - ansible-playbook ../files/remove-comments.yml
   - echo "Installing and testing git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}"
   - ansible-container install git+https://github.com/${TRAVIS_REPO_SLUG},${TRAVIS_COMMIT}
   - echo "Update ansible/container.yml"
-  - ansible-playbook ../utils/update-container.yml 
+  - ansible-playbook ../files/update-container.yml 
   - echo "ansible/container.yml:"
   - cat ansible/container.yml
   - ansible-container build
