@@ -65,6 +65,7 @@ If you're planning to deploy to OpenShift, then we recommend using the pre-built
     $ cd myproject
     $ ansible-container init
     ```
+
 ## Role Variables
 
 There are no variables defined in [defaults](./defaults/main.yml). However, the following environment variables are defined in [container.yml](./meta/container.yml), and provide some control over the creation of the database:
