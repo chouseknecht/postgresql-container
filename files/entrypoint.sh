@@ -22,4 +22,4 @@ if [ ! -f ${PGDATA}/pg_hba.conf ]; then
     ansible-playbook -i inventory dbinit.yml 
 fi
 
-exec "$@"
+$@
