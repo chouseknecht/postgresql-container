@@ -18,6 +18,7 @@ whoami
 
 if [ ! -f ${PGDATA}/pg_hba.conf ]; then
     # init the database
+    mkdir -p /var/lib/pgsql/data/userdata
     cd /ansible-dbinit
     ansible-playbook -i inventory dbinit.yml 
 fi
